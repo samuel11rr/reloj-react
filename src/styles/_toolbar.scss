@@ -1,0 +1,11 @@
+.toolbar {
+  &-pannel {
+    border: 1px solid blue;
+    position: absolute;
+    width: 100%;
+    padding: 0 20px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+}
