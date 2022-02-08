@@ -8,7 +8,7 @@ export const ClockApp = () => {
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  
+
 
   return (
     <>
@@ -21,7 +21,13 @@ export const ClockApp = () => {
 
       <ClockScreen />
 
-      <Settings/>
+      {
+        isSettingsOpen &&
+        <Settings
+          isSettingsOpen={ isSettingsOpen }
+          handleSettings={ setIsSettingsOpen }
+        />
+      }
     </>
   )
 }
