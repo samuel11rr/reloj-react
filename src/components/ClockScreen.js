@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useLimitTime } from '../hooks/useLimitTime';
 
 export const ClockScreen = ({ showSeconds }) => {
 
-  const currentTime = () => {
+  const getCurrentTime = () => {
     const date = new Date();
 
     const hour = date.toLocaleString('es-MX', {
@@ -11,17 +12,25 @@ export const ClockScreen = ({ showSeconds }) => {
       second: 'numeric',
       hour12: false
     });
-    
+
     return hour.split(':');
   }
 
-  const [ time, setTime ] = useState( currentTime() );
-  const [ hours, minutes, seconds ] = time;
+  const [ currentTime, setCurrentTime ] = useState( getCurrentTime() );
+  const [ hours, minutes, seconds ] = currentTime;
 
-  setTimeout( () => setTime( currentTime ), 1000 );
+  setTimeout( () => {
+    setCurrentTime( getCurrentTime );
+  }, 1000);
   
+  // TODO: this value should be defined by the user
+  const limitTime = '22:02:00';
+  
+  const theme = useLimitTime( currentTime, limitTime );
+
+
   return (
-    <div className={ showSeconds ? 'clock-screen' : 'clock-screen no-seconds' }>
+    <div className={ showSeconds ? `clock-screen ${ theme }` : 'clock-screen no-seconds' }>
 
       <div className={ showSeconds ? 'clock-number' : 'clock-number-big' }>
         { hours }
