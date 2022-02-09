@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Settings = ({ isSettingsOpen, handleSettings }) => {
+export const Settings = ({ isSettingsOpen, handleSettings, showSeconds, handleShowSeconds }) => {
   return (
     <aside className='settings-panel'>
       <div className='settings-header'>
@@ -10,7 +10,10 @@ export const Settings = ({ isSettingsOpen, handleSettings }) => {
         </button>
       </div>
 
-      Show seconds: true
+      <div>
+        <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ () => handleShowSeconds( !showSeconds ) } />
+        <label htmlFor="show-seconds"> Show seconds </label>
+      </div>
     </aside>
   );
 };

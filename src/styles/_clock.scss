@@ -14,11 +14,19 @@
   &-number {
     width: calc( 100vw * 0.2 );
     text-align: center;
-    border: 1px solid red;
 
+    &-big {
+      width: calc( 100vw * 0.3 );
+      text-align: center;
+    }
   }
-
+  
   &-separator {
-    margin: 0 10px;
+    width: 6vw;
+    text-align: center;
   }
+}
+
+.no-seconds {
+  font-size: calc( 100vw * 0.25 );
 }

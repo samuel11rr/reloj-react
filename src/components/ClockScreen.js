@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const ClockScreen = () => {
+export const ClockScreen = ({ showSeconds }) => {
 
   const currentTime = () => {
     const date = new Date();
@@ -11,7 +11,7 @@ export const ClockScreen = () => {
       second: 'numeric',
       hour12: false
     });
-  
+    
     return hour.split(':');
   }
 
@@ -21,12 +21,23 @@ export const ClockScreen = () => {
   setTimeout( () => setTime( currentTime ), 1000 );
   
   return (
-    <div className='clock-screen'>
-      <div className='clock-number'> { hours } </div>
-      <span className='clock-separator'> : </span>
-      <div className='clock-number'> { minutes } </div>
-      <span className='clock-separator'> : </span>
-      <div className='clock-number'> { seconds } </div>
+    <div className={ showSeconds ? 'clock-screen' : 'clock-screen no-seconds' }>
+
+      <div className={ showSeconds ? 'clock-number' : 'clock-number-big' }>
+        { hours }
+      </div>
+
+      <span className='clock-separator'>
+        { (seconds % 2 === 0 && !showSeconds) ? ':' : '' }
+        { showSeconds && ':' }
+      </span>
+      
+      <div className={ showSeconds ? 'clock-number' : 'clock-number-big' }>
+        { minutes }
+      </div>
+
+      { showSeconds && <span className='clock-separator'> : </span> }
+      { showSeconds && <div className='clock-number'> { seconds } </div> }
     </div>
   )
 };
