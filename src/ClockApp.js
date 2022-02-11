@@ -22,6 +22,7 @@ export const ClockApp = () => {
 
       <ClockScreen
         showSeconds={ showSeconds }
+        limitTime={ limitTime }
       />
 
       {

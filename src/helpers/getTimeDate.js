@@ -1,4 +1,4 @@
-const getTimeDate = () => {
+export const getTimeDate = () => {
   return new Date();
 }
 
