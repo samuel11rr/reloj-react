@@ -1,32 +1,20 @@
 import React, { useState } from 'react';
-import { useLimitTime } from '../hooks/useLimitTime';
+import { getTimeLocaleString } from '../helpers/getTimeDate';
+import { checkTime } from '../hooks/useLimitTime';
 
 export const ClockScreen = ({ showSeconds }) => {
 
-  const getCurrentTime = () => {
-    const date = new Date();
-
-    const hour = date.toLocaleString('es-MX', {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      hour12: false
-    });
-
-    return hour.split(':');
-  }
-
-  const [ currentTime, setCurrentTime ] = useState( getCurrentTime() );
+  const [ currentTime, setCurrentTime ] = useState( getTimeLocaleString() );
   const [ hours, minutes, seconds ] = currentTime;
 
   setTimeout( () => {
-    setCurrentTime( getCurrentTime );
+    setCurrentTime( getTimeLocaleString() );
   }, 1000);
   
   // TODO: this value should be defined by the user
-  const limitTime = '22:02:00';
+  const limitTime = '12:30:00';
   
-  const theme = useLimitTime( currentTime, limitTime );
+  const theme = checkTime( currentTime, limitTime.split(':') );
 
 
   return (

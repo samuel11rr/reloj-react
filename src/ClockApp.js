@@ -9,7 +9,7 @@ export const ClockApp = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [showSeconds, setShowSeconds] = useState(true);
-
+  const [limitTime, setLimitTime] = useState(null);
 
   return (
     <>
@@ -31,6 +31,8 @@ export const ClockApp = () => {
           handleSettings={ setIsSettingsOpen }
           showSeconds={ showSeconds }
           handleShowSeconds={ setShowSeconds }
+          limitTime={ limitTime }
+          setLimitTime={ setLimitTime }
         />
       }
     </>
