@@ -34,5 +34,17 @@ export const determinateLimitTime = ( limitHour ) => {
     limitMilliseconds = getMilliseconds( limitHour, true )
   }
 
-  return limitMilliseconds;
+  const intervalsMilliseconds = setIntervals(limitMilliseconds)
+  return intervalsMilliseconds;
+}
+
+export const setIntervals = ( limitMilliseconds, beforeLimit = 5, afterLimit = 15 ) => {
+  const settingsMilliseconds = {
+    warning: limitMilliseconds - ( (beforeLimit * 2) * 60 * 1000),
+    danger: limitMilliseconds - ( beforeLimit * 60 * 1000),
+    limit: limitMilliseconds,
+    over: limitMilliseconds + ( afterLimit * 60 * 1000)
+  }
+
+  return settingsMilliseconds;
 }

@@ -11,12 +11,14 @@ export const Settings = ({
 }) => {
 
   const limitHour = '12:30:00';
-  const limitMilliseconds = determinateLimitTime( limitHour );
+  const intervalsMilliseconds = determinateLimitTime( limitHour );
+
   
   const handleLimitTime = () => {
-    setLimitTime( limitMilliseconds );
+    // TODO: remove limit
+    setLimitTime( intervalsMilliseconds.limit );
 
-    console.log(limitTime);
+    console.log(intervalsMilliseconds);
   }
 
 

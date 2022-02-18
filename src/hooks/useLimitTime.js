@@ -7,4 +7,6 @@ export const checkMillisecondsLeft = ( millisecondsLimit ) => {
   const status = millisecondsCurrent < millisecondsLimit ? 'in time' : 'overtime';
 
   console.log( status );
+
+  return status === 'overtime' ? 'limit' : '';
 }

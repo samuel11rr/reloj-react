@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getTimeLocaleString } from '../helpers/getTimeDate';
 import { checkMillisecondsLeft } from '../hooks/useLimitTime';
 
 export const ClockScreen = ({ showSeconds, limitTime }) => {
 
   const [ currentTime, setCurrentTime ] = useState( getTimeLocaleString() );
+  const [ theme, setTheme ] = useState('');
   const [ hours, minutes, seconds ] = currentTime;
 
   setTimeout( () => {
     setCurrentTime( getTimeLocaleString() );
   }, 1000);
   
-  const checkTimeLeft = () => {
-    if ( !limitTime ) return;
-
-    checkMillisecondsLeft( limitTime );
-  }
-
-  useEffect(() => {
-    checkTimeLeft();
-  }, [seconds]);
-  
-
-  const theme = '';
+  const checkTimeLeft = useCallback( () => {
+      if ( !limitTime ) return;
+      setTheme( checkMillisecondsLeft(limitTime) );
+      console.log(limitTime);
+    }, [limitTime]
+  );
+    
+    useEffect(() => {
+      checkTimeLeft();
+    }, [seconds, checkTimeLeft]);
 
 
   return (
