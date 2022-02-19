@@ -1,5 +1,5 @@
 import React from 'react';
-import { determinateLimitTime } from '../helpers/getTimeDate';
+import { determinateLimitTime, getInitialLimit } from '../helpers/getTimeDate';
 
 export const Settings = ({
   isSettingsOpen, 
@@ -10,15 +10,15 @@ export const Settings = ({
   setLimitTime,
 }) => {
 
-  const limitHour = '12:30:00';
+  const limitHour = getInitialLimit();
   const intervalsMilliseconds = determinateLimitTime( limitHour );
 
   
   const handleLimitTime = () => {
     // TODO: remove limit
-    setLimitTime( intervalsMilliseconds.limit );
+    setLimitTime( intervalsMilliseconds );
 
-    console.log(intervalsMilliseconds);
+    console.log(limitHour);
   }
 
 
@@ -39,7 +39,7 @@ export const Settings = ({
 
       <div>
         <button onClick={ handleLimitTime }>
-          set limit hour 12:30:00
+          set limit hour { limitHour }
         </button>
       </div>
     </aside>

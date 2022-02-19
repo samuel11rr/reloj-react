@@ -1,12 +1,16 @@
 import { getTimeDate } from "../helpers/getTimeDate";
 
 
-export const checkMillisecondsLeft = ( millisecondsLimit ) => {
-  const millisecondsCurrent = getTimeDate().getTime();
+export const checkMillisecondsLeft = ({ warning, danger, limit, over }) => {
+  const current = getTimeDate().getTime();
 
-  const status = millisecondsCurrent < millisecondsLimit ? 'in time' : 'overtime';
+  const status = current < warning ? 'in-time' 
+    : current < danger ? 'warning'
+    : current < limit ? 'danger' 
+    : current < over ? 'limit' 
+    : 'overtime';
 
   console.log( status );
 
-  return status === 'overtime' ? 'limit' : '';
+  return status;
 }

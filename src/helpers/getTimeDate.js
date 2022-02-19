@@ -2,6 +2,7 @@ export const getTimeDate = () => {
   return new Date();
 }
 
+
 export const getTimeLocaleString = () => {
   const hour = getTimeDate().toLocaleString('es-MX', {
     hour: 'numeric',
@@ -10,8 +11,24 @@ export const getTimeLocaleString = () => {
     hour12: false
   });
 
-  return hour.split(':');
+  return hour;
 }
+
+
+export const getInitialLimit = () => {
+  const currentMilliseconds = getTimeDate().getTime();
+  const initialLimit = currentMilliseconds + (15 * 60 * 1000);
+  const friendlyHour = new Date( initialLimit );
+
+  const hour = friendlyHour.toLocaleString('es-MX', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false
+  })
+
+  return `${ hour }:00`;
+}
+
 
 export const getMilliseconds = ( hour, nextDay = false ) => {
   const date = getTimeDate();
@@ -26,6 +43,7 @@ export const getMilliseconds = ( hour, nextDay = false ) => {
   return milliseconds;
 }
 
+
 export const determinateLimitTime = ( limitHour ) => {
   let limitMilliseconds = getMilliseconds( limitHour );
   const currentMilliseconds = getTimeDate().getTime();
@@ -37,6 +55,7 @@ export const determinateLimitTime = ( limitHour ) => {
   const intervalsMilliseconds = setIntervals(limitMilliseconds)
   return intervalsMilliseconds;
 }
+
 
 export const setIntervals = ( limitMilliseconds, beforeLimit = 5, afterLimit = 15 ) => {
   const settingsMilliseconds = {

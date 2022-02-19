@@ -4,24 +4,23 @@ import { checkMillisecondsLeft } from '../hooks/useLimitTime';
 
 export const ClockScreen = ({ showSeconds, limitTime }) => {
 
-  const [ currentTime, setCurrentTime ] = useState( getTimeLocaleString() );
+  const [ currentTime, setCurrentTime ] = useState( getTimeLocaleString().split(':') );
   const [ theme, setTheme ] = useState('');
   const [ hours, minutes, seconds ] = currentTime;
 
   setTimeout( () => {
-    setCurrentTime( getTimeLocaleString() );
+    setCurrentTime( getTimeLocaleString().split(':') );
   }, 1000);
   
   const checkTimeLeft = useCallback( () => {
       if ( !limitTime ) return;
       setTheme( checkMillisecondsLeft(limitTime) );
-      console.log(limitTime);
     }, [limitTime]
   );
     
-    useEffect(() => {
-      checkTimeLeft();
-    }, [seconds, checkTimeLeft]);
+  useEffect(() => {
+    checkTimeLeft();
+  }, [seconds, checkTimeLeft]);
 
 
   return (
