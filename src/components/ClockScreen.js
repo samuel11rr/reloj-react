@@ -24,7 +24,7 @@ export const ClockScreen = ({ showSeconds, limitTime }) => {
 
 
   return (
-    <div className={ showSeconds ? `clock-screen ${ theme }` : 'clock-screen no-seconds' }>
+    <div className={ showSeconds ? `clock-screen ${ theme }` : `clock-screen no-seconds ${ theme }` }>
 
       <div className={ showSeconds ? 'clock-number' : 'clock-number-big' }>
         { hours }

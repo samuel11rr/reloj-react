@@ -8,7 +8,7 @@ export const checkMillisecondsLeft = ({ warning, danger, limit, over }) => {
     : current < danger ? 'warning'
     : current < limit ? 'danger' 
     : current < over ? 'limit' 
-    : 'overtime';
+    : 'in-time';
 
   console.log( status );
 

@@ -31,7 +31,22 @@
   font-size: calc( 100vw * 0.25 );
 }
 
+.warning {
+  background-color: #ffcc6e;
+  color: white;
+}
+
+.danger {
+  background-color: #fd7e75;
+  color: white;
+}
+
 .limit {
   background-color: #f44336;
+  color: white;
+}
+
+.over {
+  background-color: #701812;
   color: white;
 }
