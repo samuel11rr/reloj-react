@@ -1,5 +1,5 @@
-import React from 'react';
-import { determinateLimitTime, getInitialLimit } from '../helpers/getTimeDate';
+import React, { useState } from 'react';
+import { determinateLimitTime, getInitialLimit, getTimeLocaleString } from '../helpers/getTimeDate';
 
 export const Settings = ({
   isSettingsOpen, 
@@ -10,17 +10,31 @@ export const Settings = ({
   setLimitTime,
 }) => {
 
-  const limitHour = getInitialLimit();
-  const intervalsMilliseconds = determinateLimitTime( limitHour );
-
+  const [formHour, setFormHour] = useState(getInitialLimit());
+  const intervalsMilliseconds = determinateLimitTime( formHour );
   
-  const handleLimitTime = () => {
-    // TODO: remove limit
-    setLimitTime( intervalsMilliseconds );
 
-    console.log(limitHour);
+  const timePrevSelected = () => {
+    if ( !limitTime ) return false;
+
+    return getTimeLocaleString( limitTime.limit );
   }
 
+  const clearLimitHour = () => {
+    setLimitTime(null);
+    setFormHour( getInitialLimit() );
+  }
+
+  const handleFormHour = (event) => {
+    if ( !event.target.value ) return;
+    const selectedHour = `${ event.target.value }:00`;
+    setFormHour( selectedHour );
+  }
+  
+  const handleLimitTime = (event) => {
+    event.preventDefault();
+    setLimitTime( intervalsMilliseconds );
+  }
 
 
   return (
@@ -37,11 +51,25 @@ export const Settings = ({
         <label htmlFor="show-seconds"> Show seconds </label>
       </div>
 
-      <div>
-        <button onClick={ handleLimitTime }>
-          set limit hour { limitHour }
+      {
+        limitTime &&
+        <div>
+          Hora Limite: { timePrevSelected() }
+
+          <button onClick={ clearLimitHour }>
+            Restablecer
+          </button>
+        </div>
+      }
+
+      <form onSubmit={ handleLimitTime }>
+        <label htmlFor="limit-time">Selecciona la hora límite:</label>
+        <input type="time" id="limit-time" name="limit-time" value={ formHour } onChange={ handleFormHour } required />
+
+        <button type="submit" disabled={ !formHour }>
+          set limit hour { formHour.substring(0, 5) }
         </button>
-      </div>
+      </form>
     </aside>
   );
 };

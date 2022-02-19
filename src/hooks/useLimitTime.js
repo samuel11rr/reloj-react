@@ -10,7 +10,5 @@ export const checkMillisecondsLeft = ({ warning, danger, limit, over }) => {
     : current < over ? 'limit' 
     : 'in-time';
 
-  console.log( status );
-
   return status;
 }

@@ -3,8 +3,9 @@ export const getTimeDate = () => {
 }
 
 
-export const getTimeLocaleString = () => {
-  const hour = getTimeDate().toLocaleString('es-MX', {
+export const getTimeLocaleString = ( milliseconds = undefined ) => {
+  const date = milliseconds ? new Date(milliseconds) : new Date();
+  const hour = date.toLocaleString('es-MX', {
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
