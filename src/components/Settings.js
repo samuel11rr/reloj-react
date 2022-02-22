@@ -40,24 +40,19 @@ export const Settings = ({
   return (
     <aside className='settings-panel'>
       <div className='settings-header'>
-        <span> Settings panel </span>
+        <h4> Ajustes </h4>
         <button onClick={ () => handleSettings( !isSettingsOpen ) } >
-          Close
+          X
         </button>
-      </div>
-
-      <div>
-        <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ () => handleShowSeconds( !showSeconds ) } />
-        <label htmlFor="show-seconds"> Show seconds </label>
       </div>
 
       {
         limitTime &&
-        <div>
-          Hora Limite: { timePrevSelected() }
+        <div className='settings-info'>
+          <span> Hora Limite: { timePrevSelected().substring(0,5) } </span>
 
           <button onClick={ clearLimitHour }>
-            Restablecer
+            &#8212;
           </button>
         </div>
       }
@@ -70,6 +65,13 @@ export const Settings = ({
           set limit hour { formHour.substring(0, 5) }
         </button>
       </form>
+
+      <hr/>
+
+      <div>
+        <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ () => handleShowSeconds( !showSeconds ) } />
+        <label htmlFor="show-seconds"> Show seconds </label>
+      </div>
     </aside>
   );
 };

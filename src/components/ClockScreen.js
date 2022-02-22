@@ -13,7 +13,9 @@ export const ClockScreen = ({ showSeconds, limitTime }) => {
   }, 1000);
   
   const checkTimeLeft = useCallback( () => {
-      if ( !limitTime ) return;
+      if ( !limitTime ) {
+        return setTheme('');
+      }
       setTheme( checkMillisecondsLeft(limitTime) );
     }, [limitTime]
   );
