@@ -16,11 +16,11 @@ export const Toolbar = ({ isExpanded, handleExpanded, isSettingsOpen, handleSett
     <menu className='toolbar-pannel'>
       <ul className='toolbar-menu'>
         <li onClick={ () => handleSettings( !isSettingsOpen ) }>
-          { isSettingsOpen ? 'Close settings' : 'Open settings' }
+          { isSettingsOpen ? 'Cerrar ajustes' : 'Ajustes' }
         </li>
 
         <li onClick={ fullSize }> 
-          { isExpanded ? 'Close' : 'Expand' }
+          { isExpanded ? 'Salir de pantalla completa' : 'Pantalla completa' }
         </li>
       </ul>
     </menu>
