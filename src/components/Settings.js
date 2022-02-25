@@ -62,13 +62,13 @@ export const Settings = ({
         <input type="time" id="limit-time" name="limit-time" value={ formHour } onChange={ handleFormHour } required />
 
         <button type="submit" disabled={ !formHour }>
-          set limit hour { formHour.substring(0, 5) }
+          Establecer límite: { formHour.substring(0, 5) }
         </button>
       </form>
 
       <hr/>
 
-      <div>
+      <div className='settings-option'>
         <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ () => handleShowSeconds( !showSeconds ) } />
         <label htmlFor="show-seconds"> Show seconds </label>
       </div>

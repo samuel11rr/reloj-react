@@ -9,6 +9,54 @@
     border: 1px solid rgba(255,255,255, 0.3);
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
+
+    form > button {
+      display: block;
+      position: relative;
+      margin: 20px auto;
+      background: #0d92e6;
+      border: 1px solid #0c7ec5;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background: #0674b8;
+        border: 1px solid #065a8f;
+        color: white;
+      }
+
+      &:disabled {
+        background: #6192b2;
+        border: 1px solid #475763;
+        color: rgb(255, 255, 255);
+        cursor: not-allowed;
+      }
+    }
+
+    form > input[type="time"] {
+      font-size: 16px;
+      border: 1px solid #6192b2;
+      padding: 3px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form > label {
+      display: block;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    hr {
+      background-color: rgba(96, 125, 139, 0.5);
+      height: 1px;
+      border: none;
+    }
   }
 
   &-header {
@@ -21,6 +69,7 @@
     h4 {
       font-size: 1.5rem;
       text-transform: uppercase;
+      user-select: none;
     }
 
     button {
@@ -63,6 +112,34 @@
 
       &:hover {
         background: rgba(244, 67, 54, 1);
+      }
+    }
+  }
+
+  &-option {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    input[type="checkbox"] {
+      cursor: pointer;
+      height: 20px;
+      width: 20px;
+      background-color: #eee;
+
+      &:checked {
+        background-color: #0d92e6;
+      }
+
+      &:hover {
+        background-color: #2196F3;
+      }
+
+      & + label {
+        cursor: pointer;
+        padding-left: 8px;
+        font-size: 16px;
+        user-select: none;
       }
     }
   }
