@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { determinateLimitTime, getInitialLimit, getTimeLocaleString } from '../helpers/getTimeDate';
+import { removeLimit, saveLimit, saveSecondsStatus } from '../helpers/saveSettings';
 
 export const Settings = ({
   isSettingsOpen, 
@@ -23,6 +24,7 @@ export const Settings = ({
   const clearLimitHour = () => {
     setLimitTime(null);
     setFormHour( getInitialLimit() );
+    removeLimit();
   }
 
   const handleFormHour = (event) => {
@@ -34,6 +36,12 @@ export const Settings = ({
   const handleLimitTime = (event) => {
     event.preventDefault();
     setLimitTime( intervalsMilliseconds );
+    saveLimit( intervalsMilliseconds );
+  }
+
+  const toggleSeconds = () => {
+    handleShowSeconds( !showSeconds );
+    saveSecondsStatus( !showSeconds );
   }
 
 
@@ -69,7 +77,7 @@ export const Settings = ({
       <hr/>
 
       <div className='settings-option'>
-        <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ () => handleShowSeconds( !showSeconds ) } />
+        <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ toggleSeconds } />
         <label htmlFor="show-seconds"> Show seconds </label>
       </div>
     </aside>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ClockScreen } from './components/ClockScreen';
 import { Settings } from './components/Settings';
 import { Toolbar } from './components/Toolbar';
+import { previousSettings } from './helpers/saveSettings';
 
 
 export const ClockApp = () => {
@@ -10,6 +11,18 @@ export const ClockApp = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [showSeconds, setShowSeconds] = useState(true);
   const [limitTime, setLimitTime] = useState(null);
+  const [isSavedSettings, setIsSavedSettings] = useState(false);
+
+  useEffect(() => {
+    const isSaved = localStorage.getItem('settings') ? true : false;
+    setIsSavedSettings(isSaved);
+
+    const settings = previousSettings();
+    setShowSeconds( settings.showSeconds );
+    setLimitTime( settings.limit );
+
+  }, [isSavedSettings]);
+
 
   return (
     <>
