@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const Toolbar = ({ isExpanded, handleExpanded, isSettingsOpen, handleSettings }) => {
 
@@ -11,6 +11,14 @@ export const Toolbar = ({ isExpanded, handleExpanded, isSettingsOpen, handleSett
       document.exitFullscreen();
     }
   }
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        handleExpanded( false );
+      }
+    });
+  }, [handleExpanded]);
 
   return (
     <menu className='toolbar-pannel'>
