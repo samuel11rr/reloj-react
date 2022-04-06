@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { determinateLimitTime, getInitialLimit, getTimeLocaleString } from '../helpers/getTimeDate';
 import { removeLimit, saveLimit, saveSecondsStatus } from '../helpers/saveSettings';
+import close from '../assets/close.svg';
+import deleteIcon from '../assets/delete.svg';
+
 
 export const Settings = ({
   isSettingsOpen, 
@@ -49,8 +52,8 @@ export const Settings = ({
     <aside className='settings-panel'>
       <div className='settings-header'>
         <h4> Ajustes </h4>
-        <button onClick={ () => handleSettings( !isSettingsOpen ) } >
-          X
+        <button onClick={ () => handleSettings( !isSettingsOpen ) } className="button-img white opacity-full shadow">
+          <img src={ close } alt="Cerrar ajustes" title="Cerrar ajustes" />
         </button>
       </div>
 
@@ -59,8 +62,8 @@ export const Settings = ({
         <div className='settings-info'>
           <span> Hora Limite: { timePrevSelected().substring(0,5) } </span>
 
-          <button onClick={ clearLimitHour }>
-            &#8212;
+          <button onClick={ clearLimitHour } className="button-img button-sm danger opacity-full shadow">
+            <img src={ deleteIcon } alt="Quitar límite" title="Quitar límite" className='icon-white'/>
           </button>
         </div>
       }
@@ -78,7 +81,7 @@ export const Settings = ({
 
       <div className='settings-option'>
         <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ toggleSeconds } />
-        <label htmlFor="show-seconds"> Show seconds </label>
+        <label htmlFor="show-seconds"> Ver segundos </label>
       </div>
     </aside>
   );

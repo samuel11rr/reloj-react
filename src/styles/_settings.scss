@@ -3,12 +3,37 @@
     position: absolute;
     right: 0;
     top: 0;
-    height: 100%;
+    height: calc(100% - 102px);
     width: calc( 30% - 100px );
     padding: 50px;
     border: 1px solid rgba(255,255,255, 0.3);
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
+
+    @media (max-width: $breakpoint-mobile) {
+      height: calc(100% - 12px);
+      width: calc(85% - 20px);
+      padding: 5px 20px;
+      overflow: auto;
+    }
+
+    @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+      height: calc(100% - 42px);
+      width: calc( 70% - 20px );
+      padding: 20px;
+    }
+
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-computer-small) {
+      height: calc(100% - 82px);
+      width: calc(50% - 80px);
+      padding: 40px;
+    }
+
+    @media (min-width: $breakpoint-computer-small) and (max-width: $breakpoint-computer-medium) {
+      height: calc(100% - 102px);
+      width: calc( 40% - 100px );
+      padding: 50px;
+    }
 
     form > button {
       display: block;
@@ -71,21 +96,6 @@
       text-transform: uppercase;
       user-select: none;
     }
-
-    button {
-      width: 50px;
-      height: 50px;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.3);
-      transition: 0.2s;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.7);
-      }
-    }
   }
 
   &-info {
@@ -95,25 +105,6 @@
     justify-content: flex-end;
     align-items: center;
     user-select: none;
-
-    button {
-      margin-right: 10px;
-      background: rgba(244, 67, 54, 0.3);
-      color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      transition: 0.2s;
-      cursor: pointer;
-
-      &:hover {
-        background: rgba(244, 67, 54, 1);
-      }
-    }
   }
 
   &-option {
