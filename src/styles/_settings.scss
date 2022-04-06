@@ -134,4 +134,36 @@
       }
     }
   }
+
+  &-footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: calc(100% - 100px);
+
+    @media (max-width: $breakpoint-tablet) {
+      width: calc(100% - 40px);
+    }
+
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-computer-small) {
+      width: calc(100% - 80px);
+    }
+
+    @media (min-width: $breakpoint-computer-small) and (max-width: $breakpoint-computer-medium) {
+      width: calc(100% - 100px);
+    }
+
+    a {
+      color: black;
+      transition: 0.2s;
+      &:hover {
+        color: #6c6c6c;
+      }
+    }
+
+    img {
+      height: 1em;
+      pointer-events: none;
+    }
+  }
 }

@@ -3,6 +3,7 @@ import { determinateLimitTime, getInitialLimit, getTimeLocaleString } from '../h
 import { removeLimit, saveLimit, saveSecondsStatus } from '../helpers/saveSettings';
 import close from '../assets/close.svg';
 import deleteIcon from '../assets/delete.svg';
+import heart from '../assets/heart.png';
 
 
 export const Settings = ({
@@ -83,6 +84,10 @@ export const Settings = ({
         <input type="checkbox" id="show-seconds" checked={ showSeconds } onChange={ toggleSeconds } />
         <label htmlFor="show-seconds"> Ver segundos </label>
       </div>
+
+      <small className='settings-footer'>
+        Made with <img src={heart} alt="heart"/> by <a href='https://www.samuel-ramirez.com/' target='_blank'>Samuel Ramirez</a>
+      </small>
     </aside>
   );
 };
