@@ -140,6 +140,7 @@
     bottom: 20px;
     text-align: center;
     width: calc(100% - 100px);
+    user-select: none;
 
     @media (max-width: $breakpoint-tablet) {
       width: calc(100% - 40px);

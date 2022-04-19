@@ -87,6 +87,7 @@ export const Settings = ({
 
       <small className='settings-footer'>
         Made with <img src={heart} alt="heart"/> by <a href='https://www.samuel-ramirez.com/' target='_blank' rel="noreferrer">Samuel Ramirez</a>
+        <br />Version 1.0Alpha
       </small>
     </aside>
   );
