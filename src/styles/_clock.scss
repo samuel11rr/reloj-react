@@ -1,6 +1,6 @@
 .clock {
   &-screen {
-    background-color: lightgray;
+    background-color: $main-bg;
     height: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -32,21 +32,21 @@
 }
 
 .warning {
-  background-color: #ffcc6e;
+  background-color: $warning-bg;
   color: white;
 }
 
 .danger {
-  background-color: #fd7e75;
+  background-color: $danger-bg;
   color: white;
 }
 
 .limit {
-  background-color: #f44336;
+  background-color: $limit-bg;
   color: white;
 }
 
 .over {
-  background-color: #701812;
+  background-color: $over-bg;
   color: white;
 }
