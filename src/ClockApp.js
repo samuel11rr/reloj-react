@@ -3,6 +3,7 @@ import { ClockScreen } from './components/ClockScreen';
 import { Settings } from './components/Settings';
 import { Toolbar } from './components/Toolbar';
 import { previousSettings } from './helpers/saveSettings';
+import { addListeners } from './helpers/screenLock';
 
 
 export const ClockApp = () => {
@@ -22,6 +23,10 @@ export const ClockApp = () => {
     setLimitTime( settings.limit );
 
   }, [isSavedSettings]);
+
+  useEffect(() => {
+    addListeners();
+  }, []);
 
 
   return (

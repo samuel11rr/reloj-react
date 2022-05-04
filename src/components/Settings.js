@@ -4,6 +4,7 @@ import { removeLimit, saveLimit, saveSecondsStatus } from '../helpers/saveSettin
 import close from '../assets/close.svg';
 import deleteIcon from '../assets/delete.svg';
 import heart from '../assets/heart.png';
+import versions from '../data/versionInfo.json';
 
 
 export const Settings = ({
@@ -14,10 +15,9 @@ export const Settings = ({
   limitTime,
   setLimitTime,
 }) => {
-
   const [formHour, setFormHour] = useState(getInitialLimit());
   const intervalsMilliseconds = determinateLimitTime( formHour );
-  
+  const { version: currentVersion } = versions[ versions.length-1 ];
 
   const timePrevSelected = () => {
     if ( !limitTime ) return false;
@@ -87,7 +87,7 @@ export const Settings = ({
 
       <small className='settings-footer'>
         Made with <img src={heart} alt="heart"/> by <a href='https://www.samuel-ramirez.com/' target='_blank' rel="noreferrer">Samuel Ramirez</a>
-        <br />Version 1.0Alpha
+        <br />{ currentVersion }
       </small>
     </aside>
   );
