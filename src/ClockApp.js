@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ClockScreen } from './components/ClockScreen';
 import { Settings } from './components/Settings';
 import { Toolbar } from './components/Toolbar';
 import { previousSettings } from './helpers/saveSettings';
-import { addListeners } from './helpers/screenLock';
 
 
 export const ClockApp = () => {
@@ -13,6 +12,7 @@ export const ClockApp = () => {
   const [showSeconds, setShowSeconds] = useState(true);
   const [limitTime, setLimitTime] = useState(null);
   const [isSavedSettings, setIsSavedSettings] = useState(false);
+  const [isScreenLocked, setIsScreenLocked] = useState(false);
 
   useEffect(() => {
     const isSaved = localStorage.getItem('settings') ? true : false;
@@ -24,9 +24,37 @@ export const ClockApp = () => {
 
   }, [isSavedSettings]);
 
-  useEffect(() => {
-    addListeners();
+  const screenLockOn = useCallback( async () => {
+    try {
+      const screenStatus = await navigator.wakeLock.request('screen');
+      setIsScreenLocked( !screenStatus.released );
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+
+  const screenLockOff = useCallback( async () => {
+    try {
+      const screenLock = await navigator.wakeLock.request('screen');
+      await screenLock.release();
+      setIsScreenLocked( false );
+    } catch (error) {
+      setIsScreenLocked( false );
+    }
+  }, []);
+
+  const visibilityChange = useCallback( () => {
+    return document.visibilityState === 'visible' ? screenLockOn() : screenLockOff();
+  }, [screenLockOn, screenLockOff]);
+
+  useEffect(() => {
+    if ( !navigator.wakeLock ) return;
+
+    screenLockOn();
+    document.addEventListener('visibilitychange', visibilityChange);
+    window.addEventListener('focus', screenLockOn);
+    window.addEventListener('blur', screenLockOff);
+  }, [screenLockOn, screenLockOff, visibilityChange]);
 
 
   return (
@@ -41,6 +69,7 @@ export const ClockApp = () => {
       <ClockScreen
         showSeconds={ showSeconds }
         limitTime={ limitTime }
+        isScreenLocked={ isScreenLocked }
       />
 
       {

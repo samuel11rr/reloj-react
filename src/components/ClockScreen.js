@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { getTimeLocaleString } from '../helpers/getTimeDate';
 import { checkMillisecondsLeft } from '../hooks/useLimitTime';
 
-export const ClockScreen = ({ showSeconds, limitTime }) => {
+export const ClockScreen = ({ showSeconds, limitTime, isScreenLocked }) => {
 
   const [ currentTime, setCurrentTime ] = useState( getTimeLocaleString().split(':') );
   const [ theme, setTheme ] = useState('');
@@ -27,7 +27,6 @@ export const ClockScreen = ({ showSeconds, limitTime }) => {
 
   return (
     <div className={ showSeconds ? `clock-screen ${ theme }` : `clock-screen no-seconds ${ theme }` }>
-
       <div className={ showSeconds ? 'clock-number' : 'clock-number-big' }>
         { hours }
       </div>
