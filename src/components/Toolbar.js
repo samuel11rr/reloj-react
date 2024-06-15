@@ -3,9 +3,9 @@ import cog from '../assets/cog.svg';
 import expand from '../assets/arrow-expand.svg';
 import exit from '../assets/fullscreen-exit.svg';
 
+const fullScreenAvailable = !!document.documentElement.requestFullscreen;
 
 export const Toolbar = ({ isExpanded, handleExpanded, isSettingsOpen, handleSettings }) => {
-
   const fullSize = () => {
     handleExpanded( !isExpanded );
 
@@ -31,13 +31,15 @@ export const Toolbar = ({ isExpanded, handleExpanded, isSettingsOpen, handleSett
           <img src={ cog } alt="Ajustes" title="Ajustes" />
         </li>
 
-        <li onClick={ fullSize } className="button-img">
-          <img 
-            src={ isExpanded ? exit : expand } 
-            alt={ isExpanded ? 'Salir de pantalla completa' : 'Pantalla completa' } 
-            title={ isExpanded ? 'Salir de pantalla completa' : 'Pantalla completa' }
-          />
-        </li>
+        {fullScreenAvailable && (
+          <li onClick={ fullSize } className="button-img">
+            <img 
+              src={ isExpanded ? exit : expand } 
+              alt={ isExpanded ? 'Salir de pantalla completa' : 'Pantalla completa' } 
+              title={ isExpanded ? 'Salir de pantalla completa' : 'Pantalla completa' }
+            />
+          </li>
+        )}
       </ul>
     </menu>
   );

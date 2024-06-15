@@ -3,6 +3,9 @@ export const getTimeDate = () => {
 }
 
 
+const pad = (number) => `${number}`.padStart(2, '0');
+
+
 export const getTimeLocaleString = ( milliseconds = undefined ) => {
   const date = milliseconds ? new Date(milliseconds) : new Date();
   const hour = date.toLocaleString('es-MX', {
@@ -37,8 +40,8 @@ export const getMilliseconds = ( hour, nextDay = false ) => {
   const month = date.getMonth() + 1;
   const day = nextDay ? date.getDate() + 1 : date.getDate();
 
-  const fullDate = `${ year }-${ month < 10 ? `0${month}` : month }-${ day < 10 ? `0${day}` : day } ${ typeof hour === 'string' ? hour : hour.join(':') }`;
- 
+  const fullDate = `${ year }-${ pad(month) }-${ pad(day) }T${ typeof hour === 'string' ? hour : hour.join(':') }`;
+
   const milliseconds = new Date( fullDate ).getTime();
   
   return milliseconds;
