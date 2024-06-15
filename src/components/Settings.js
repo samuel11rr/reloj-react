@@ -86,7 +86,7 @@ export const Settings = ({
       </div>
 
       <small className='settings-footer'>
-        Made with <img src={heart} alt="heart"/> by <a href='https://www.samuel-ramirez.com/' target='_blank' rel="noreferrer">Samuel Ramirez</a>
+        Made with <img src={heart} alt="heart"/> by Samuel Ramirez
         <br />{ currentVersion }
       </small>
     </aside>
